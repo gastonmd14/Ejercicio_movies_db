@@ -41,10 +41,10 @@ module.exports = {
 
     search: function (req, res) {
   
-        db.Pelicula.findOne({
+        db.Pelicula.findAll({
           where: {
             title:{
-              [Op.like]: '%' + req.query.keywords + '%'
+              [Op.substring]:  req.query.keywords
             }
           }   
         }).then((resultado) => {

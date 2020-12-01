@@ -26,10 +26,10 @@
             
         </div>
         <div>
-            <%if (movie) { %>
+            <% movie.forEach(function(valor) { %>
                 <h2 style="    border: 1px solid;margin: 50px;padding: 50px;">
-                    <a href="/movies/<%= movie.id %>"> <%= movie.title %> </a></h2>
-            <% } %>
+                    <a href="/movies/<%= valor.id %>"> <%= valor.title %> </a></h2>
+            <% }) %>
         </div>
     </div>
 </body>
