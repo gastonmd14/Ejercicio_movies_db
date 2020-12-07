@@ -21,8 +21,8 @@
                 <form action="/movies/<%= movie.id%>/edit" method="GET">
                     <button type="submit">MODIFICAR</button>
                 </form>
-                <form action="/movies/<%= movie.id%>/delete" method="POST">
-                    <button>BORRAR</button>
+                <form action="/movies/<%= movie.id%>/?_method=DELETE" method="POST">
+                    <button type="submit">BORRAR</button>
                 </form>
             </div>
         </div>
