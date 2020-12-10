@@ -14,10 +14,17 @@
         <div class="row">
             <div class="col">
                 <h1><%= movie.title %></h1>
-                <p>Fecha de lanzamiento <%= movie.release_date %></p>
-                <p>Rating <%= movie.rating %></p>
-                <p>Premios obtenidos <%= movie.awards %></p>
-                <p>Duracion <%= movie.length %> minutos</p>
+                <p>Fecha de lanzamiento: <%= movie.release_date %></p>
+                <p>Rating: <%= movie.rating %></p>
+                <p>Premios: obtenidos <%= movie.awards %></p>
+                <p>Duracion: <%= movie.length %> minutos</p>
+                <p>Genero: <a href="/genres/<%= movie.genre_id %>"><%= movie.genero.name %></a></p>
+                <p>Actores: </p>
+                    <% for(let i = 0; i < movie.actores.length; i++) { %>
+                    <a href="/actors/<%= movie.actores[i].id %>"><ul>
+                        <%= movie.actores[i].first_name %> <%= movie.actores[i].last_name %>
+                    </ul></a>
+                    <% } %>
                 <form action="/movies/<%= movie.id%>/edit" method="GET">
                     <button type="submit">MODIFICAR</button>
                 </form>

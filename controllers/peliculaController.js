@@ -90,8 +90,14 @@ module.exports = {
 
   detail: function (req, res) {
     // devolver solo la pelicula especificada por el id
-    db.Pelicula.findByPk(req.params.id)
+    db.Pelicula.findByPk(req.params.id, {
+      include: [
+        {association: 'genero'},
+        {association: 'actores'}
+    ]})
+      
     .then((resultado) => {
+      console.log(resultado.actores);
       res.render('movies/show', { movie: resultado })
     })
     .catch(function(error){
@@ -99,15 +105,18 @@ module.exports = {
     })   
     },
   
+
   edit: function (req, res) {
     let moviesResults = db.Pelicula.findByPk(req.params.id)
     let genresResults = db.Genero.findAll()
+    let actorsResults = db.Actor.findAll()
  
-    Promise.all([moviesResults, genresResults])
-      .then(function([movies, genres]) {
+    Promise.all([moviesResults, genresResults, actorsResults])
+      .then(function([movies, genres, actors]) {
         res.render('movies/edit', {
               genres : genres,    
               movie : movies,
+              actor: actors
         })                
       })
       .catch(function(error){
