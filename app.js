@@ -6,6 +6,7 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
+var movieRouter = require('./routes/movies');
 var genreRouter = require('./routes/genres');
 var actorsRouter = require('./routes/actors');
 var usersRouter = require('./routes/users');
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/movies', movieRouter);
 app.use('/genres', genreRouter);
 app.use('/actors', actorsRouter);
 app.use('/users', usersRouter);

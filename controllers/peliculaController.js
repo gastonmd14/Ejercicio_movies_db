@@ -5,14 +5,14 @@ const { Op } = require('sequelize')
 
 module.exports = {
   index: function(req, res, next) {
-      res.render('index', { title: 'DH Movies' });
+      res.render('movies/index', { title: 'DH Movies' });
     },
   
   show: function (req, res) {
     // devolver todas las peliculas
     db.Pelicula.findAll()
       .then((resultado) => {
-        res.render('movies/index', { movies: resultado })
+        res.render('movies/show', { movies: resultado })
       })
       .catch(function(error){
         console.log(error);
@@ -97,8 +97,8 @@ module.exports = {
     ]})
       
     .then((resultado) => {
-      console.log(resultado.actores);
-      res.render('movies/show', { movie: resultado })
+      console.log(resultado);
+      res.render('movies/detail', { movie: resultado })
     })
     .catch(function(error){
       console.log(error);
@@ -150,6 +150,7 @@ module.exports = {
         id: req.params.id
       }
     })
+    
     .catch(function(error){
       console.log(error);
     })
